@@ -1,0 +1,6 @@
+[submodule "thirdPart/yalantinglibs"]
+	path = thirdPart/yalantinglibs
+	url = https://github.com/alibaba/yalantinglibs.git
+[submodule "thirdPart/glog"]
+	path = thirdPart/glog
+	url = https://github.com/google/glog.git
