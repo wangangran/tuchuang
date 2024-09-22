@@ -1,9 +1,4 @@
-//
-// Created by root on 9/18/24.
-//
-
-#ifndef TUCHUANG_SRC_CONF_TCCONF_H
-#define TUCHUANG_SRC_CONF_TCCONF_H
+#pragma once
 
 #include <string>
 #include <ylt/struct_yaml/yaml_reader.h>
@@ -12,44 +7,43 @@
 struct MysqlInfo {
     std::string host;
     uint16_t port;
-    std::string dbName;
-    std::string userName;
+    std::string db_name;
+    std::string user_name;
     std::string passwd;
-    uint16_t maxConn;
+    uint16_t max_conn;
 };
-YLT_REFL(MysqlInfo, host, port, dbName, userName, passwd, maxConn);
+YLT_REFL(MysqlInfo, host, port, db_name, user_name, passwd, max_conn);
 
 struct RedisInfo {
+    std::string name;
     std::string host;
     uint16_t port;
+    std::string passwd;
     uint16_t db;
-    uint16_t maxConn;
+    uint16_t max_conn;
 };
-YLT_REFL(RedisInfo, host, port, db, maxConn);
+YLT_REFL(RedisInfo, name, host, port, db, max_conn);
 
 struct TcConfInfo {
-    std::string httpListenIp;
-    uint16_t httpPort;
-    int threadNum;
-    std::string logLevel;
-    std::string webDomain;
-    std::string webPort;
-    std::string dbInstances;
-    MysqlInfo sqlMaster;
-    MysqlInfo sqlSlave;
-    std::string cacheInstances;
-    RedisInfo redisToken;
-    RedisInfo redisRank;   
+    std::string log_dir;
+    std::string http_listen_ip;
+    uint16_t http_port;
+    int thread_num;
+    std::string log_level;
+    std::string web_domain;
+    std::string web_port;
+    std::string db_instances;
+    MysqlInfo sql_master;
+    MysqlInfo sql_slave;
+    std::vector<RedisInfo> redis_info;
 };
-YLT_REFL(TcConfInfo, httpListenIp, httpPort, threadNum, logLevel, webDomain, webPort, dbInstances, sqlMaster, sqlSlave, cacheInstances, redisToken, redisRank);
+YLT_REFL(TcConfInfo, log_dir, http_listen_ip, http_port, thread_num, log_level, web_domain, web_port, db_instances, sql_master, sql_slave, redis_info);
 
 class TcConf {
 public:
-    explicit TcConf(const std::string &confPath);
+    explicit TcConf(const std::string &conf_path);
     int parse();
     
-    std::string confPath_;
+    TcConfInfo info_;
+    std::string conf_path_;
 };
-
-
-#endif // TUCHUANG_SRC_CONF_TCCONF_H

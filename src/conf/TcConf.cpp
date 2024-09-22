@@ -6,29 +6,26 @@
 
 #include <iostream>
 
-TcConf::TcConf(const std::string &confPath) : confPath_(confPath) {}
+TcConf::TcConf(const std::string &conf_path) : conf_path_(conf_path) {}
 
 
 int TcConf::parse() {
-    std::ifstream file(confPath_);
+    std::ifstream file(conf_path_);
     if (!file.is_open()) {
         return -1;
     }
 
     file.seekg(0, std::ios::end);
-    std::streampos fileSize = file.tellg();
+    std::streampos file_size = file.tellg();
     file.seekg(0, std::ios::beg);
 
-    std::string fileBuf;
-    fileBuf.resize(fileSize);
+    std::string file_buf;
+    file_buf.resize(file_size);
 
-    file.read(&fileBuf[0], fileSize);
+    file.read(&file_buf[0], file_size);
 
     file.close();
-    std::cout << fileBuf << std::endl;
-    TcConfInfo tc;
-    iguana::from_yaml(tc, fileBuf);
+    iguana::from_yaml(info_, file_buf);
 
-    std::cout << tc.sqlMaster.host << std::endl;
     return 0;
 }

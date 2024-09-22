@@ -4,3 +4,6 @@
 [submodule "thirdPart/glog"]
 	path = thirdPart/glog
 	url = https://github.com/google/glog.git
+[submodule "thirdPart/hiredis"]
+	path = thirdPart/hiredis
+	url = https://github.com/redis/hiredis.git

@@ -1,32 +1,33 @@
-httpListenIp: 0.0.0.0
-httpPort: 5476
-threadNum: 50
-logLevel: info
-webDomain: www.waryy.cn
-webPort: 9099
-dbInstances: tuchuang_master,tuchuang_slave
-sqlMaster: 
+log_dir: /srv/tuchuang/log
+http_listen_ip: 0.0.0.0
+http_port: 5476
+thread_num: 50
+log_level: info
+web_domain: www.waryy.cn
+web_port: 9099
+db_instances: tuchuang_master,tuchuang_slave
+sql_master: 
   host: 127.0.0.1
   port: 3306
-  dbName: 0voice_tuchuang
-  userName: root
+  db_name: 0voice_tuchuang
+  user_name: root
   passwd: war19960105
-  maxConn: 50
-sqlSlave: 
+  max_conn: 50
+sql_slave: 
   host: 127.0.0.1
   port: 3306
-  dbName: 0voice_tuchuang
-  userName: root
+  db_name: 0voice_tuchuang
+  user_name: root
   passwd: war19960105
-  maxConn: 50
-cacheInstances: token,ranking_list
-redisToken: 
-  host: 127.0.0.1
-  port: 6379
-  db: 0
-  maxConn: 50
-redisRank: 
-  host: 127.0.0.1
-  port: 6379
-  db: 1
-  maxConn: 50
+  max_conn: 50
+redis_info: 
+  - name: token
+    host: 127.0.0.1
+    port: 6379
+    db: 0
+    max_conn: 50
+  - name: rank
+    host: 127.0.0.1
+    port: 6379
+    db: 1
+    max_conn: 50

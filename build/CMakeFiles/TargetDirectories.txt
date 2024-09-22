@@ -1,0 +1,5 @@
+/home/war/myCode/tuchuang/build/CMakeFiles/edit_cache.dir
+/home/war/myCode/tuchuang/build/CMakeFiles/rebuild_cache.dir
+/home/war/myCode/tuchuang/build/src/CMakeFiles/tuchuang.dir
+/home/war/myCode/tuchuang/build/src/CMakeFiles/edit_cache.dir
+/home/war/myCode/tuchuang/build/src/CMakeFiles/rebuild_cache.dir
