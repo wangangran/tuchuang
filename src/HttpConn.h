@@ -1,0 +1,18 @@
+#pragma once
+
+#include <memory>
+#include <ylt/coro_io/coro_io.hpp>
+#include <ylt/coro_http/coro_http_server.hpp>
+
+struct TcConf;
+
+class HttpConn {
+public:
+    explicit HttpConn(const std::shared_ptr<TcConf> &info) : tc_info_(info) {}
+
+    async_simple::coro::Lazy<void> Run();
+// private:
+    void HandleRegisterRequest(cinatra::coro_http_request &req, cinatra::coro_http_response &resp);
+private:
+    std::shared_ptr<TcConf> tc_info_;
+};

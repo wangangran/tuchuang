@@ -1,0 +1,33 @@
+log_dir: /srv/cloud_storage/log
+http_listen_ip: 0.0.0.0
+http_port: 8081
+thread_num: 50
+log_level: info
+web_domain: www.waryy.cn
+web_port: 9099
+mysql_info:
+  - name: master
+    host: 127.0.0.1
+    port: 3306
+    db_name: cloud_storage
+    ser_name: root
+    passwd: war19960105
+    max_conn: 50
+  - name: slave
+    host: 127.0.0.1
+    port: 3306
+    db_name: cloud_storage
+    user_name: root
+    passwd: war19960105
+    max_conn: 50
+redis_info:
+  - name: token
+    host: 127.0.0.1
+    port: 6379
+    db: 0
+    max_conn: 50
+  - name: rank
+    host: 127.0.0.1
+    port: 6379
+    db: 1
+    max_conn: 50

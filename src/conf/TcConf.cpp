@@ -5,8 +5,9 @@
 #include "TcConf.h"
 
 #include <iostream>
+#include <utility>
 
-TcConf::TcConf(const std::string &conf_path) : conf_path_(conf_path) {}
+TcConf::TcConf(std::string conf_path) : conf_path_(std::move(conf_path)) {}
 
 
 int TcConf::parse() {
