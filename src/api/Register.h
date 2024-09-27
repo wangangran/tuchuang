@@ -1,7 +1,3 @@
-//
-// Created by root on 9/26/24.
-//
-
 #pragma once
 
 #include <string_view>
@@ -24,10 +20,10 @@ YLT_REFL(RegisterResult, code);
 
 class Register {
 public:
-    explicit Register(const std::string_view &body_str) : body_str_(body_str) { parse(); }
+    explicit Register(const std::string_view &body_str) : body_str_(body_str) { Parse(); }
     std::string RegUser();
 private:
-    void parse();
+    void Parse();
 private:
     std::string_view body_str_;
     RegisterInfo info_;

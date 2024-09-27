@@ -1,26 +1,9 @@
-//
-// Created by root on 9/26/24.
-//
-
 #include "Register.h"
 
 #include <glog/logging.h>
 
+#include "base/Common.h"
 #include "db/mysql/MysqlPool.h"
-
-template<typename... Args>
-std::string formatString2(const std::string &format, Args... args) {
-    auto size = std::snprintf(nullptr, 0, format.c_str(), args...) + 1;
-    std::unique_ptr<char[]> buf(new char[size]);
-    std::snprintf(buf.get(), size, format.c_str(), args...);
-    return std::string(buf.get(), buf.get() + size - 1);
-}
-
-void Register::parse() {
-    struct_json::from_json(info_, body_str_);
-    assert(!info_.userName.empty());
-    assert(!info_.firstPwd.empty());
-}
 
 std::string Register::RegUser() {
     int code = 0;
@@ -29,7 +12,7 @@ std::string Register::RegUser() {
     MysqlConn *mysql_conn = MysqlManagerIns()->GetMysqlConn("master");
     AutoRelMysqlConn auto_rel_mysql(mysql_conn);
     // 先查看用户是否存在
-    std::string str_sql = formatString2("select * from user_info where user_name='%s'", info_.userName.c_str());
+    std::string str_sql = Common::formatString("select * from user_info where user_name='%s'", info_.userName.c_str());
     MysqlResultSet *result_set = mysql_conn->ExecuteQuery(str_sql.c_str());
     if (result_set && result_set->Next()) { // 检测是否存在用户记录
         // 存在在返回
@@ -74,4 +57,10 @@ std::string Register::RegUser() {
     reg_result.code = code;
     struct_json::to_json(reg_result, result);
     return result;
+}
+
+void Register::Parse() {
+    struct_json::from_json(info_, body_str_);
+    assert(!info_.userName.empty());
+    assert(!info_.firstPwd.empty());
 }

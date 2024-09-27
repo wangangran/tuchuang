@@ -109,4 +109,14 @@ private:
     std::map<std::string, RedisPool *> pool_map_;
 };
 
-#define RedisManagerIns Singleton<RedisManager>::instance()
+#define RedisManagerIns Singleton<RedisManager>::instance
+
+class AutoRelRedisConn {
+public:
+    explicit AutoRelRedisConn(RedisConn *conn) : conn_(conn) {}
+    ~AutoRelRedisConn() {
+        RedisManagerIns()->RelRedisConn(conn_);
+    }
+private:
+    RedisConn *conn_ = nullptr;
+};

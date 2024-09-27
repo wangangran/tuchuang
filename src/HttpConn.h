@@ -12,7 +12,10 @@ public:
 
     async_simple::coro::Lazy<void> Run();
 // private:
-    void HandleRegisterRequest(cinatra::coro_http_request &req, cinatra::coro_http_response &resp);
+    // 账号注册
+    static int HandleRegisterRequest(cinatra::coro_http_request &req, cinatra::coro_http_response &resp);
+    // 账号登录
+    static int HandleLoginRequest(cinatra::coro_http_request &req, cinatra::coro_http_response &resp);
 private:
     std::shared_ptr<TcConf> tc_info_;
 };
